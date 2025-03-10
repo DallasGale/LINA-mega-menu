@@ -1,0 +1,40 @@
+// Main Overlau
+.megamenu__overlay {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: var(--header-height);
+  min-height: 60vh;
+  max-height: 800px;
+  left: 0;
+  width: 100%;
+  background: var(--lina-color-navy);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transition: var(--lina-transition);
+}
+
+.megamenu__grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  left: 0;
+  right: 0;
+}
+
+.megamenu__content {
+  padding: 20px;
+  min-height: 400px;
+  &.menu {
+    display: none;
+  }
+  &.search {
+    display: none;
+  }
+}

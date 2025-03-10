@@ -1,39 +1,128 @@
-import "./style.css";
-import { query } from "./query.ts";
+import "./style.scss";
+import $ from "jquery";
 
-document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
-   <div class="nav-container">
-      <button class="menu-button">MENU</button>
+$.fn.fadeOutWithVisibility = function (duration, callback) {
+  return this.animate(
+    {
+      opacity: 0,
+      transition: "all 0.3s",
+    },
+    duration,
+    function () {
+      $(this).css("visibility", "hidden");
+      if (typeof callback === "function") callback();
+    }
+  );
+};
 
-      <div class="megamenu-overlay">
-        <div class="menu-sidebar">
-          <div class="menu-item" data-content="section1">Products</div>
-          <div class="menu-item" data-content="section2">Services</div>
-          <div class="menu-item" data-content="section3">About Us</div>
-          <div class="menu-item" data-content="section4">Contact</div>
-        </div>
+$.fn.fadeInWithVisibility = function (duration, callback) {
+  // First ensure the element is visible but still at opacity 0
+  this.css({
+    visibility: "visible",
+    opacity: 0,
+    transition: "all 0.3s",
+  });
 
-        <div class="menu-content">
-          <div id="section1" class="content-section">
-            <h2>Our Products</h2>
-            <p>Browse our amazing product catalog...</p>
-          </div>
-          <div id="section2" class="content-section">
-            <h2>Our Services</h2>
-            <p>Discover what we can do for you...</p>
-          </div>
-          <div id="section3" class="content-section">
-            <h2>About Us</h2>
-            <p>Learn more about our company...</p>
-          </div>
-          <div id="section4" class="content-section">
-            <h2>Contact Us</h2>
-            <p>Get in touch with our team...</p>
-          </div>
-        </div>
-      </div>
-    </div>
-`;
+  // Then fade in the opacity
+  return this.animate(
+    {
+      opacity: 1,
+      transition: "all 0.3s",
+    },
+    duration,
+    function () {
+      if (typeof callback === "function") callback();
+    }
+  );
+};
 
-query();
-// setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
+export function render() {
+  const header = $(".header");
+  const menuButton = $(".menu-button");
+  const searchButton = $(".search-button");
+  const overlay = $(".megamenu__overlay");
+  const menuContent = $(".megamenu__grid.menu");
+  const searchContent = $(".megamenu__grid.search");
+
+  $(document).ready(function () {
+    let hoverTimeout: number = 0;
+
+    function handleMemuClick() {
+      clearTimeout(hoverTimeout);
+      searchButton.find(".icon").removeClass("active");
+      searchButton.removeClass("active");
+      if (menuButton.hasClass("active")) {
+        overlay.fadeOutWithVisibility(300);
+        menuContent.fadeOutWithVisibility(300);
+        header.removeClass("active");
+        menuButton.removeClass("active");
+        menuButton.find(".icon").removeClass("active");
+      } else {
+        overlay.fadeInWithVisibility(300);
+        menuContent.fadeInWithVisibility(300);
+        searchContent.fadeOutWithVisibility(300);
+        header.addClass("active");
+        menuButton.addClass("active");
+        menuButton.find(".icon").addClass("active");
+      }
+    }
+
+    function handleSearchClick() {
+      clearTimeout(hoverTimeout);
+      menuButton.find(".icon").removeClass("active");
+      menuButton.removeClass("active");
+      if (searchButton.hasClass("active")) {
+        overlay.fadeOutWithVisibility(300);
+        searchContent.fadeOutWithVisibility(300);
+        header.removeClass("active");
+        searchButton.removeClass("active");
+        searchButton.find(".icon").removeClass("active");
+      } else {
+        overlay.fadeInWithVisibility(300);
+        menuContent.fadeOutWithVisibility(300);
+        searchContent.fadeInWithVisibility(300);
+        header.addClass("active");
+        searchButton.addClass("active");
+        searchButton.find(".icon").addClass("active");
+      }
+    }
+
+    // Meny Click
+    // Show menu on hover
+    menuButton.click(function () {
+      console.log("button click");
+      handleMemuClick();
+    });
+
+    // Search Click
+    searchButton.click(function () {
+      console.log("button click");
+      handleSearchClick();
+    });
+
+    // Handle menu item clicks
+    $(".megamenu__nav-item").click(function () {
+      // Remove active class from all items and sections
+      $(".megamenu__nav-item").removeClass("active");
+      $(".megamenu__sub-nav-content").removeClass("active");
+
+      // Add active class to clicked item
+      $(this).addClass("active");
+
+      // Show corresponding content
+      $("#" + $(this).data("content")).addClass("active");
+    });
+
+    // Show first section by default
+    $(".megamenu__nav-item:first").click();
+
+    // Close menu on button click or when clicking outside
+    $(".menu-button").click(function (e) {
+      console.log("button click");
+      e.stopPropagation();
+      // $(".megamenu__overlay").fadeToggle(200);
+    });
+  });
+}
+
+render();

@@ -1,0 +1,15 @@
+.megamenu__sub-nav-content {
+  display: none;
+  grid-template-columns: repeat(3, minmax(0, 243px));
+}
+
+.megamenu__sub-nav-content.active {
+  display: grid;
+}
+
+.megamenu__sub-nav-cell {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding-left: 0;
+}

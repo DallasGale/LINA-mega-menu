@@ -4,55 +4,99 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>LINA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <div id="app"></div>
+  <body id="mega-menu">
+    <header class="header">
+      <div class="nav-container">
+        <!-- Buttons -->
+        <div class="button-group">
+          <button class="button login-button">
+            Login
+            <div class="icon inactive"></div>
+          </button>
+          <button class="button search-button">
+            Search
+            <div class="icon inactive"></div>
+          </button>
+          <button class="button menu-button">
+            Menu
+            <div class="icon inactive"></div>
+          </button>
+        </div>
+        <!-- -->
+      </div>
+    </header>
+    <div class="megamenu__overlay" style="visibility: hidden; opacity: 0">
+      <div class="megamenu__grid menu">
+        <div class="megamenu__nav-items">
+          <div
+            class="megamenu__nav-item"
+            data-active="true"
+            data-content="section1"
+          >
+            What We Do
+          </div>
+          <div
+            class="megamenu__nav-item"
+            data-active="false"
+            data-content="section2"
+          >
+            For Newsrooms
+          </div>
+          <div
+            class="megamenu__nav-item"
+            data-active="false"
+            data-content="section3"
+          >
+            LINA Movement
+          </div>
+          <div
+            class="megamenu__nav-item"
+            data-active="false"
+            data-content="section4"
+          >
+            Join The Movement
+          </div>
+          <div
+            class="megamenu__nav-item"
+            data-active="false"
+            data-content="section4"
+          >
+            Become A Supporter
+          </div>
+        </div>
+
+        <div class="megamenu__content">
+          <ul id="section1" class="megamenu__sub-nav-content">
+            <%- whatWeDo %>
+          </ul>
+          <ul id="section2" class="megamenu__sub-nav-content">
+            <%- forNewsrooms %>
+          </ul>
+          <ul id="section3" class="megamenu__sub-nav-content">
+            <%- linaMovement %>
+          </ul>
+          <ul id="section4" class="megamenu__sub-nav-content">
+            <%- joinTheMovement %>
+          </ul>
+          <ul id="section5" class="megamenu__sub-nav-content">
+            <%- becomeASupporter %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="megamenu__grid search">
+        <input type="text" placeholder="Search" class="megamenu__search-box" />
+      </div>
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
-    <!--
-    <script>
-      console.log("jquery");
-
-      $(document).ready(function () {
-        let hoverTimeout;
-
-        // Show menu on hover
-        $(".nav-container").hover(
-          function () {
-            clearTimeout(hoverTimeout);
-            $(".megamenu-overlay").fadeIn(200);
-          },
-          function () {
-            hoverTimeout = setTimeout(function () {
-              $(".megamenu-overlay").fadeOut(200);
-            }, 300);
-          }
-        );
-
-        // Handle menu item clicks
-        $(".menu-item").click(function () {
-          // Remove active class from all items and sections
-          $(".menu-item").removeClass("active");
-          $(".content-section").removeClass("active");
-
-          // Add active class to clicked item
-          $(this).addClass("active");
-
-          // Show corresponding content
-          $("#" + $(this).data("content")).addClass("active");
-        });
-
-        // Show first section by default
-        $(".menu-item:first").click();
-
-        // Close menu on button click or when clicking outside
-        $(".menu-button").click(function (e) {
-          console.log("button click");
-          e.stopPropagation();
-          $(".megamenu-overlay").fadeToggle(200);
-        });
-      });
-    </script>
-  --></body>
+  </body>
 </html>
