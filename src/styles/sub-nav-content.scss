@@ -1,6 +1,16 @@
+@use "./breakpoints.scss" as breakpoints;
+
 .megamenu__sub-nav-content {
   display: none;
-  grid-template-columns: repeat(3, minmax(0, 243px));
+  gap: 19px;
+  padding-left: 0;
+  grid-template-columns: 1fr;
+  @include breakpoints.respond-to(phone-up) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include breakpoints.respond-to(tablet-up) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .megamenu__sub-nav-content.active {

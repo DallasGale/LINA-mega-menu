@@ -1,22 +1,36 @@
+@use "./breakpoints.scss" as breakpoints;
+
 .megamenu__nav-items {
   width: auto;
-  padding: 20px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   width: 100%;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  z-index: 1;
+  background-color: var(--lina-color-navy);
+  box-shadow: 0 20px 5px 0px rgb(6 0 57 / 51%);
 }
 
 .megamenu__nav-item {
   border-radius: var(--btn-radius);
   background-color: rgba(255, 255, 255, 0.1);
-  font-size: 18px;
+  font-size: 13px;
+  padding: 6px 11px;
   font-weight: 600;
-  padding: 10px 20px;
   cursor: pointer;
   transition: var(--lina-transition);
+
+  @include breakpoints.respond-to(phone-up) {
+    padding: 10px 20px;
+    font-size: 18px;
+  }
+
+  @include breakpoints.respond-to(tablet-up) {
+    font-size: 18px;
+  }
 }
 
 .megamenu__nav-item:hover {

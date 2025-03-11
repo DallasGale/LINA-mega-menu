@@ -3,6 +3,13 @@
 @use "./styles/overlay.scss";
 @use "./styles/sub-nav-content.scss";
 @use "./styles/search.scss";
+@use "./styles/breakpoints.scss" as breakpoints;
+
+$breakpoint-mobile: 497px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-widescreen: 1440px;
+$breakpoint-huge: 1690px;
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -18,7 +25,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --header-height: 130px;
+  --header-height: 80px;
+
   --btn-radius: 40px;
   --lina-transition: all ease-in-out 0.3s;
 
@@ -28,6 +36,16 @@
   --lina-color-light-grey: #8d8d8d;
   --lina-color-white: #ffffff;
   --lina-color-cream: #e3dfd6;
+
+  --breakpoint-mobile: 497px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-widescreen: 1440px;
+  --breakpoint-huge: 1690px;
+
+  @include breakpoints.respond-to(tablet-up) {
+    --header-height: 130px;
+  }
 }
 
 body {
@@ -65,7 +83,9 @@ body {
     padding-right: 30px;
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    @include breakpoints.respond-to(tablet-up) {
+      gap: 20px;
+    }
   }
   .button {
     font-size: 18px;
@@ -76,7 +96,7 @@ body {
     justify-content: center;
     background: none;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 0;
     gap: 10px;
     cursor: pointer;
     .icon {
@@ -97,25 +117,202 @@ body {
     }
   }
   // Search  Button
-  .search-button .icon {
-    &.inactive {
-      background: url("./icons/search.svg") no-repeat center;
-      background-size: 16px;
+  .search-button {
+    text-indent: -9999px;
+    @include breakpoints.respond-to(tablet-up) {
+      text-indent: 0;
     }
-    &.active {
-      background: url("./icons/cross.svg") no-repeat center;
-      background-size: 24px;
+    .icon {
+      &.inactive {
+        background: url("./icons/search.svg") no-repeat center;
+        background-size: 16px;
+      }
+      &.active {
+        background: url("./icons/cross.svg") no-repeat center;
+        background-size: 24px;
+      }
     }
   }
   // Menu Button
-  .menu-button .icon {
-    &.inactive {
-      background: url("./icons/menu.svg") no-repeat center;
-      background-size: 24px;
+  .menu-button {
+    text-indent: -9999px;
+    @include breakpoints.respond-to(tablet-up) {
+      text-indent: 0;
     }
-    &.active {
-      background: url("./icons/cross.svg") no-repeat center;
-      background-size: 24px;
+    .icon {
+      &.inactive {
+        background: url("./icons/menu.svg") no-repeat center;
+        background-size: 24px;
+      }
+      &.active {
+        background: url("./icons/cross.svg") no-repeat center;
+        background-size: 24px;
+      }
     }
+  }
+}
+
+// Mobile Nav
+
+// @keyframes animateNav {
+//   0% {
+//     transform: translateY(100%);
+//   }
+//   100% {
+//     transform: translateY(0);
+//   }
+// }
+// .nav-wrapper {
+//   overflow: scroll;
+//   width: 100vw;
+//   position: relative;
+//   top: 100px;
+//   z-index: 20;
+//   transform: translateY(100%);
+//   background-color: var(--black);
+//   height: auto;
+//   // display: none;
+//   transition: all 0.35s ease-out;
+//   align-items: center;
+//   // animation: animateNav 600ms forwards linear;
+//   // animation-timing-function: cubic-bezier(0.46, 0.03, 0.52, 0.96);
+//   // animation-delay: 5.5s;
+//   will-change: transform;
+//   &.hidden {
+//     transition: all 0.35s ease-out;
+//   }
+// }
+// .nav {
+//   position: relative;
+//   width: 100%;
+//   display: flex;
+//   justify-content: space-between;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   width: 164vw;
+// }
+// ul {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-around;
+//   width: 100%;
+//   align-items: center;
+//   margin: 0;
+//   &:before {
+//     content: "";
+//     position: absolute;
+//     width: 100%;
+//     height: 2px;
+//     right: 0;
+//     border-bottom: 2px dotted var(--kayogreen);
+//     z-index: -2;
+//   }
+// }
+// .anchor {
+//   padding: 0 10px;
+//   color: var(--kayogreen);
+//   font-size: 15px;
+//   text-transform: uppercase;
+//   font-family: "GibsonSemiBold", sans-serif;
+//   text-decoration: none;
+//   position: relative;
+//   &:before {
+//     content: "";
+//     height: 20px;
+//     width: 100%;
+//     background-color: var(--black);
+//     right: 0;
+//     top: 0;
+//     transition: all 0.25s ease-out;
+//     position: absolute;
+//     z-index: -1;
+//   }
+// }
+
+// li {
+//   height: 56px;
+//   display: flex;
+//   align-items: center;
+//   padding: 0 0;
+//   position: relative;
+// }
+
+// li.active {
+//   .anchor {
+//     color: var(--black);
+//     background-color: transparent;
+//     transition: none;
+//     transition: all 0.25s ease-out;
+//     &:first-of-type {
+//       &:before {
+//         width: 100%;
+//         transform: translateX(0);
+//         transition: all 0.35s ease-out;
+//       }
+//     }
+//     &:before {
+//       width: 0%;
+//       transform: translateX(0);
+//       transition: all 0.25s ease-out;
+//     }
+//   }
+// }
+
+// .nav-follower {
+//   position: absolute;
+//   width: 164vw;
+//   height: 100%;
+//   background-color: var(--kayogreen);
+//   bottom: 0;
+//   transform: translateX(-200%) skew(-25deg);
+//   z-index: -1;
+//   transition: all 0.35s ease-out;
+//   &:before {
+//     content: "";
+//     background-color: var(--kayogreen);
+//     left: -1400px;
+//     width: 2000px;
+//     position: absolute;
+//     height: 100%;
+//   }
+// }
+// @media screen and (min-width: $breakpoint-tablet) {
+//   .nav {
+//     width: 100%;
+//   }
+
+//   .nav-follower {
+//     width: 100vw;
+//   }
+// }
+
+// @media screen and (min-width: $breakpoint-desktop) {
+//   .nav-wrapper {
+//     display: flex;
+//     justify-content: center;
+//   }
+
+//   ul {
+//     max-width: 1440px;
+//   }
+// }
+// @media screen and (min-width: $breakpoint-widescreen) {
+//   .nav-follower {
+//     width: 1440px;
+//   }
+// }
+
+.mobile-only {
+  display: none;
+  @media screen and (max-width: $breakpoint-desktop) {
+    display: block;
+  }
+}
+
+.desktop-only {
+  display: none;
+  @media screen and (min-width: $breakpoint-desktop) {
+    display: block;
   }
 }

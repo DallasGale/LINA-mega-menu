@@ -1,11 +1,18 @@
 import "./style.scss";
 import $ from "jquery";
 
+declare global {
+  interface JQuery {
+    fadeOutWithVisibility(duration: number, callback?: () => void): JQuery;
+    fadeInWithVisibility(duration: number, callback?: () => void): JQuery;
+  }
+}
+
 $.fn.fadeOutWithVisibility = function (duration, callback) {
   return this.animate(
     {
       opacity: 0,
-      transition: "all 0.3s",
+      // transition: "opacity ease-in-out 0.3s",
     },
     duration,
     function () {
@@ -20,14 +27,14 @@ $.fn.fadeInWithVisibility = function (duration, callback) {
   this.css({
     visibility: "visible",
     opacity: 0,
-    transition: "all 0.3s",
+    // transition: "opacity ease-in-out 0.3s",
   });
 
   // Then fade in the opacity
   return this.animate(
     {
       opacity: 1,
-      transition: "all 0.3s",
+      // transition: "opacity ease-in-out 0.3s",
     },
     duration,
     function () {
@@ -45,6 +52,9 @@ export function render() {
   const searchContent = $(".megamenu__grid.search");
 
   $(document).ready(function () {
+    // Mobile menu
+
+    //
     let hoverTimeout: number = 0;
 
     function handleMemuClick() {
@@ -61,7 +71,10 @@ export function render() {
         overlay.fadeInWithVisibility(300);
         menuContent.fadeInWithVisibility(300);
         searchContent.fadeOutWithVisibility(300);
-        header.addClass("active");
+
+        setTimeout(() => {
+          header.addClass("active");
+        }, 300);
         menuButton.addClass("active");
         menuButton.find(".icon").addClass("active");
       }
@@ -81,7 +94,9 @@ export function render() {
         overlay.fadeInWithVisibility(300);
         menuContent.fadeOutWithVisibility(300);
         searchContent.fadeInWithVisibility(300);
-        header.addClass("active");
+        setTimeout(() => {
+          header.addClass("active");
+        }, 300);
         searchButton.addClass("active");
         searchButton.find(".icon").addClass("active");
       }
@@ -111,6 +126,8 @@ export function render() {
 
       // Show corresponding content
       $("#" + $(this).data("content")).addClass("active");
+
+      $(".megamenu__content").scrollTop(0);
     });
 
     // Show first section by default
