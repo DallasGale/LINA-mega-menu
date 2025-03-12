@@ -57,50 +57,37 @@ const whatWeDo = [
   {
     title: "Submenu 1",
     url: "/",
+    description: "This is a medium length description for submenu 1.",
   },
   {
     title: "Submenu 2",
     url: "/",
+    description: "This is a medium length description for submenu 2.",
   },
   {
     title: "Submenu 3",
     url: "/",
+    description: "This is a medium length description for submenu 3.",
   },
   {
     title: "Submenu 4",
     url: "/",
+    description: "This is a medium length description for submenu 4.",
   },
   {
     title: "Submenu 5",
     url: "/",
+    description: "This is a medium length description for submenu 5.",
   },
   {
     title: "Submenu 6",
     url: "/",
+    description: "This is a medium length description for submenu 6.",
   },
   {
-    title: "Submenu 1",
+    title: "Submenu 7",
     url: "/",
-  },
-  {
-    title: "Submenu 2",
-    url: "/",
-  },
-  {
-    title: "Submenu 3",
-    url: "/",
-  },
-  {
-    title: "Submenu 4",
-    url: "/",
-  },
-  {
-    title: "Submenu 5",
-    url: "/",
-  },
-  {
-    title: "Submenu 6",
-    url: "/",
+    description: "This is a medium length description for submenu 7.",
   },
 ];
 
@@ -133,7 +120,9 @@ function generateList(items) {
         .map(
           (item) =>
             `<li class="megamenu__sub-nav-cell">
-              <div class="megamenu__sub-nav-item-container "><a class="main-nav-link megamenu__sub-nav-item" href="${item.url}">${item.title}</a></div></li>`
+              <div class="megamenu__sub-nav-item-container "><a class="main-nav-link megamenu__sub-nav-item" href="${item.url}">${item.title}</a></div>
+              <p class="body-1">${item.description}</p>  
+            </li>`
         )
         .join("")}
   `;
