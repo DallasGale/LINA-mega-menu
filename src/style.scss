@@ -88,15 +88,17 @@ body {
 	}
 }
 
-.button {
-	color: var(--lina-color-white);
+.button,
+a.button,
+a.button:hover {
+	color: var(--lina-color-white) !important;
 	font-size: 18px;
 	font-weight: 600;
 	display: flex;
 	align-items: center;
 	flex-direction: row;
 	justify-content: center;
-	background: none;
+	background: none !important;
 	border: none;
 	padding: 10px 0;
 	gap: 10px;
