@@ -56,7 +56,6 @@
 	position: relative;
 	width: auto;
 	text-decoration: none;
-	color: #fff;
 
 	&:before {
 		content: "";
@@ -84,4 +83,8 @@
 .megamenu__children {
 	list-style: none;
 	padding-left: 0;
+
+	.megamenu__sub-nav-item {
+		font-size: 16px;
+	}
 }
