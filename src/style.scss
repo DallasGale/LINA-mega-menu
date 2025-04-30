@@ -12,157 +12,184 @@ $breakpoint-widescreen: 1440px;
 $breakpoint-huge: 1690px;
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+	font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #171717;
+	color-scheme: light dark;
+	color: rgba(255, 255, 255, 0.87);
+	background-color: #171717;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
-  --header-height: 80px;
+	--header-height: 80px;
 
-  --btn-radius: 40px;
-  --lina-transition: all ease-in-out 0.3s;
+	--btn-radius: 40px;
+	--lina-transition: all ease-in-out 0.3s;
 
-  --lina-color-navy: #060039;
-  --lina-color-yellow: #efa92a;
-  --lina-color-extra-dark-grey: #121212;
-  --lina-color-light-grey: #8d8d8d;
-  --lina-color-white: #ffffff;
-  --lina-color-cream: #e3dfd6;
+	--lina-color-navy: #060039;
+	--lina-color-yellow: #efa92a;
+	--lina-color-extra-dark-grey: #121212;
+	--lina-color-light-grey: #8d8d8d;
+	--lina-color-white: #ffffff;
+	--lina-color-cream: #e3dfd6;
 
-  --breakpoint-mobile: 497px;
-  --breakpoint-tablet: 768px;
-  --breakpoint-desktop: 1024px;
-  --breakpoint-widescreen: 1440px;
-  --breakpoint-huge: 1690px;
+	--breakpoint-mobile: 497px;
+	--breakpoint-tablet: 768px;
+	--breakpoint-desktop: 1024px;
+	--breakpoint-widescreen: 1440px;
+	--breakpoint-huge: 1690px;
 
-  @include breakpoints.respond-to(tablet-up) {
-    --header-height: 130px;
-  }
+	@include breakpoints.respond-to(tablet-up) {
+		--header-height: 130px;
+	}
 }
 
 body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
+	margin: 0;
+	font-family: "Poppins", sans-serif;
 }
 
-#mega-menu {
-  /* Header */
-  .header {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    right: 0;
-    left: 0;
-    height: var(--header-height);
-    top: 0;
-    background-color: transparent;
-    width: 100%;
-    z-index: 2;
-    transition: var(--lina-transition);
-    &.active {
-      background-color: #040025;
-      transition: var(--lina-transition);
-    }
-  }
+/* Header */
+.site-header {
+	position: fixed;
+	right: 0;
+	left: 0;
+	height: var(--header-height);
+	top: 0;
+	background-color: transparent;
+	width: 100%;
+	z-index: 2;
+	transition: var(--lina-transition);
 
-  .nav-container {
-    position: relative;
-  }
-  /* Buttons */
-  .button-group {
-    padding-right: 30px;
-    display: flex;
-    flex-direction: row;
-    @include breakpoints.respond-to(tablet-up) {
-      gap: 20px;
-    }
-  }
-  .button {
-    color: var(--lina-color-white);
-    font-size: 18px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: center;
-    background: none;
-    border: none;
-    padding: 10px 0;
-    gap: 10px;
-    cursor: pointer;
-    .icon {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  // Login Button
-  .login-button .icon {
-    &.inactive {
-      background: url("./icons/login.svg") no-repeat center;
-      background-size: 24px;
-    }
-    &.active {
-      background: url("./icons/login.svg") no-repeat center;
-      background-size: 24px;
-    }
-  }
-  // Search  Button
-  .search-button {
-    text-indent: -9999px;
-    @include breakpoints.respond-to(tablet-up) {
-      text-indent: 0;
-    }
-    .icon {
-      &.inactive {
-        background: url("./icons/search.svg") no-repeat center;
-        background-size: 16px;
-      }
-      &.active {
-        background: url("./icons/cross.svg") no-repeat center;
-        background-size: 24px;
-      }
-    }
-  }
-  // Menu Button
-  .menu-button {
-    text-indent: -9999px;
-    @include breakpoints.respond-to(tablet-up) {
-      text-indent: 0;
-    }
-    .icon {
-      &.inactive {
-        background: url("./icons/menu.svg") no-repeat center;
-        background-size: 24px;
-      }
-      &.active {
-        background: url("./icons/cross.svg") no-repeat center;
-        background-size: 24px;
-      }
-    }
-  }
+	&.active {
+		background-color: #040025;
+		transition: var(--lina-transition);
+	}
 }
+
+.nav-container {
+	display: flex;
+	position: relative;
+	justify-content: flex-end;
+}
+
+/* Buttons */
+.button-group {
+	padding-right: 30px;
+	display: flex;
+	flex-direction: row;
+
+	@include breakpoints.respond-to(tablet-up) {
+		gap: 20px;
+	}
+}
+
+.button,
+a.button,
+a.button:hover {
+	color: var(--lina-color-white) !important;
+	font-size: 18px;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	justify-content: center;
+	background: none !important;
+	border: none;
+	padding: 10px 0;
+	gap: 10px;
+	cursor: pointer;
+
+	.icon {
+		width: 24px;
+		height: 24px;
+	}
+}
+
+// Login Button
+.login-button .icon {
+	&.inactive {
+		background: url("./icons/login.svg") no-repeat center;
+		background-size: 24px;
+	}
+
+	&.active {
+		background: url("./icons/login.svg") no-repeat center;
+		background-size: 24px;
+	}
+}
+
+.user-button .icon {
+	&.inactive {
+		background: url("./icons/user.svg") no-repeat center;
+		background-size: 24px;
+	}
+
+	&.active {
+		background: url("./icons/user.svg") no-repeat center;
+		background-size: 24px;
+	}
+}
+
+// Search  Button
+.search-button {
+	text-indent: -9999px;
+
+	@include breakpoints.respond-to(tablet-up) {
+		text-indent: 0;
+	}
+
+	.icon {
+		&.inactive {
+			background: url("./icons/search.svg") no-repeat center;
+			background-size: 16px;
+		}
+
+		&.active {
+			background: url("./icons/cross.svg") no-repeat center;
+			background-size: 24px;
+		}
+	}
+}
+
+// Menu Button
+.menu-button {
+	text-indent: -9999px;
+
+	@include breakpoints.respond-to(tablet-up) {
+		text-indent: 0;
+	}
+
+	.icon {
+		&.inactive {
+			background: url("./icons/menu.svg") no-repeat center;
+			background-size: 24px;
+		}
+
+		&.active {
+			background: url("./icons/cross.svg") no-repeat center;
+			background-size: 24px;
+		}
+	}
+}
+
 
 .mobile-only {
-  display: none;
-  @media screen and (max-width: $breakpoint-desktop) {
-    display: block;
-  }
+	display: none;
+
+	@media screen and (max-width: $breakpoint-desktop) {
+		display: block;
+	}
 }
 
 .desktop-only {
-  display: none;
-  @media screen and (min-width: $breakpoint-desktop) {
-    display: block;
-  }
+	display: none;
+
+	@media screen and (min-width: $breakpoint-desktop) {
+		display: block;
+	}
 }
