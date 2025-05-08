@@ -44,6 +44,7 @@ $.fn.fadeInWithVisibility = function (duration, callback) {
 };
 
 export function render() {
+  const body = $("body");
   const header = $(".header");
   const menuButton = $(".menu-button");
   const searchButton = $(".search-button");
@@ -58,6 +59,7 @@ export function render() {
     let hoverTimeout: number = 0;
 
     function handleMemuClick() {
+      body.toggleClass("lock");
       clearTimeout(hoverTimeout);
       searchButton.find(".icon").removeClass("active");
       searchButton.removeClass("active");
